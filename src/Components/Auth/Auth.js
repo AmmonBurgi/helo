@@ -12,9 +12,9 @@ class Auth extends Component {
     }
 
 handleUsername = (val) => {
-    this.setState={
+    this.setState({
         username: val
-    }
+    })
 }
 
 handlePassword = (val) => {
@@ -26,9 +26,9 @@ handlePassword = (val) => {
 register = () => {
     const {username, password} = this.state
    axios.post('/api/register', {username, password})
-   .then(res => {
+   .then((res) => {
        this.props.history.push('/dashboard')
-   }) 
+   }).catch(err => console.log(err))
 }
 
     render(){
@@ -38,7 +38,7 @@ register = () => {
                 <input placeholder='Username' onChange={e => this.handleUsername(e.target.value)} />
                 <input placeholder='Password' onChange={e => this.handlePassword(e.target.value)} />
                 <button>Login</button>
-                <button>Register</button>
+                <button onClick={this.register}>Register</button>
             </div>
         )
     }

@@ -1,0 +1,16 @@
+.auth {
+    width: 500px;
+    height: 500px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+}
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

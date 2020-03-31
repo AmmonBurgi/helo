@@ -5,4 +5,4 @@ password
 $1,
 $2
 ) 
-returning id, username,  
+returning id, username

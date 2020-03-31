@@ -25,7 +25,7 @@ massive({
 })
 
 app.post('/api/register', ctrl.register)
-// app.post('/api/login', ctrl.login)
+app.post('/api/login', ctrl.login)
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
 

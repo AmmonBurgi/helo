@@ -11,12 +11,12 @@ class Nav extends Component {
         }
     }
     render(){
-        // console.log(this.props)
+        console.log(this.props)
         return(
             <div className='nav'>
                 <div className='theImg'>
-                    <img src={this.props.user.profile_pic} alt='profile' />
-                    <p>{this.props.user.username}</p> 
+                    <img src={this.props.profile_pic} alt='profile' />
+                    <p>{this.props.username}</p> 
                 </div>
                 <div className='home'>
                     <Link to='/dashboard'>

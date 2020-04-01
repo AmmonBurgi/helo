@@ -6,7 +6,7 @@ import Nav from './Components/Nav/Nav'
 
 
 function App(props) {
-  console.log(props)
+  // console.log(props)
   return (
     <div className="App">
       {props.location.pathname === '/'

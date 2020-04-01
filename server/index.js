@@ -24,8 +24,12 @@ massive({
     console.log('db connected')
 })
 
+app.get('/api/posts', ctrl.getPosts)
+
+//Authentication endpoints
 app.post('/api/register', ctrl.register)
 app.post('/api/login', ctrl.login)
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
 

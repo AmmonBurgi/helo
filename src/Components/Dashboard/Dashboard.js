@@ -3,6 +3,7 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './dash.css'
+import Post from '../Post/Post'
 
 class Dashboard extends Component {
     constructor(){
@@ -37,7 +38,7 @@ class Dashboard extends Component {
         // console.log(searchVal, userPosts)
         axios.get(`/api/posts/${this.props.id}?search=${searchVal}&post=${userPosts}`)
         .then(res => {
-            console.log(res.data)
+            console.log('dash data', res.data)
             this.setState({
                 posts: res.data
             })
@@ -54,20 +55,22 @@ class Dashboard extends Component {
         })
     }
 
+
     render(){
         // console.log(this.props)
         // console.log(this.props.id)
         // console.log('id', this.props.id)
         const {posts} = this.state
         let postMap = posts.map((element, index) => {
-            // console.log(element)
-        return <Link to={`/post/${element.author_id}`} key={index}>
+            // console.log('element', element)
+        return <Link to={`/post/${element.id}`} key={index}>
                     <div className='post-map'>
                         <p>Title: {element.title}</p>
                         <p>Username: {element.username}</p>
-                        <img src={element.profilePic} alt={element.username}/>
+                        <img src={element.img} alt={element.username}/>
                     </div>
                 </Link>
+                
         })
         return(
             <div>

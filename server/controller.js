@@ -36,7 +36,7 @@ module.exports = {
         res.status(202).send(req.session.user);
     },
     getPosts: async(req, res) => {
-        console.log('query', req.query)
+        // console.log('query', req.query)
         const {search, post} = req.query
         const {id} = req.params
         // console.log(id, searchVal, newPost)
@@ -54,6 +54,7 @@ module.exports = {
             return res.status(200).send(searchPost)
         } else {
             let getAll = await db.get_user_posts()
+            console.log(getAll)
             return res.status(200).send(getAll)
         }
     },
@@ -61,8 +62,8 @@ module.exports = {
         const {id} = req.params
         console.log(id, req.params)
         const db = req.app.get('db')
-
         let getUser = await db.get_single_user(id)
+        console.log('password', getUser[0].password)
         console.log(getUser)
         res.status(200).send(getUser)
     },

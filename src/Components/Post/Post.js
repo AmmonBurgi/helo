@@ -40,7 +40,7 @@ class Post extends Component {
             <div>
                 <p>{postTitle}</p>
                 <img src={profilePicture} alt={postUsername} />
-                <p>{postImage}</p>
+                <img src={postImage} alt={postTitle} />
                 <p>{postUsername}</p>
                 <p>{postContent}</p>
             </div>

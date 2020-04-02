@@ -36,24 +36,34 @@ module.exports = {
         res.status(202).send(req.session.user);
     },
     getPosts: async(req, res) => {
-        const {searchVal, userPosts} = req.body
-        const id = req.params
-        console.log(id, searchVal, userPosts)
+        console.log('query', req.query)
+        const {search, post} = req.query
+        const {id} = req.params
+        // console.log(id, searchVal, newPost)
         const db = req.app.get('db')
-
+        let newPost = post === 'true' ? true : false
         // let posts = await db.get_user_posts()
-        if(userPosts && searchVal){
-            let searchUserPost = await db.get_user_title(searchVal)
+        if(newPost && search){
+            let searchUserPost = await db.get_user_title(search)
            return res.status(200).send(searchUserPost)
-        } else if (!userPosts && !searchVal){
+        } else if (!newPost && !search){
             let getAllUser = await db.get_user_id(+id)
             return res.status(200).send(getAllUser)
-        } else if (!userPosts && searchVal){
-            let searchPost = await db.post_title(searchVal, id)
+        } else if (!newPost && search){
+            let searchPost = await db.post_title(search, +id)
             return res.status(200).send(searchPost)
         } else {
             let getAll = await db.get_user_posts()
-            return req.status(200).send(getAll)
+            return res.status(200).send(getAll)
         }
+    },
+    getPost: async(req, res) => {
+        const {id} = req.params
+        console.log(id, req.params)
+        const db = req.app.get('db')
+
+        let getUser = await db.get_single_user(id)
+        console.log(getUser)
+        res.status(200).send(getUser)
     }
 }

@@ -65,5 +65,12 @@ module.exports = {
         let getUser = await db.get_single_user(id)
         console.log(getUser)
         res.status(200).send(getUser)
+    },
+    createPost: (req, res) => {
+        const {id} = req.params
+        const {title, imageUrl, content} = req.body
+        const db = req.app.get('db')
+        db.create_post(id, title, imageUrl, content) 
+        res.status(200).send('Created')
     }
 }

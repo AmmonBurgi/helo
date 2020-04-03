@@ -54,17 +54,17 @@ module.exports = {
             return res.status(200).send(searchPost)
         } else {
             let getAll = await db.get_user_posts()
-            console.log(getAll)
+            // console.log(getAll)
             return res.status(200).send(getAll)
         }
     },
     getPost: async(req, res) => {
         const {id} = req.params
-        console.log(id, req.params)
+        // console.log(id, req.params)
         const db = req.app.get('db')
         let getUser = await db.get_single_user(id)
-        console.log('password', getUser[0].password)
-        console.log(getUser)
+        // console.log('password', getUser[0].password)
+        // console.log(getUser)
         res.status(200).send(getUser)
     },
     createPost: (req, res) => {
@@ -73,5 +73,13 @@ module.exports = {
         const db = req.app.get('db')
         db.create_post(id, title, imageUrl, content) 
         res.status(200).send('Created')
+    },
+    deletePost: async(req, res) => {
+        const {id} = req.params
+        console.log(req.params)
+        const db = req.app.get('db')
+        let deleted = db.delete(id)
+        console.log(deleted)
+        res.status(200).send(deleted)
     }
 }

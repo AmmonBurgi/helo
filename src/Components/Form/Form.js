@@ -29,9 +29,7 @@ createPost = () => {
 }
 
     render(){
-        console.log(this.props)
-        // console.log(this.state.content)
-        // console.log(this.props.id)
+
         return(
             <div>
                 <input name='title' onChange={e => this.handleChange(e)} placeholder='title' />

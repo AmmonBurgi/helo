@@ -55,6 +55,16 @@ class Dashboard extends Component {
         })
     }
 
+    deletePost = (id) => {
+        axios.delete(`/api/delete/${id}`)
+        .then(res => {
+            this.setState({
+                posts: res.data
+            })
+            this.props.history.push('/dashboard')
+        }).catch(err => console.log(err))
+    }
+
 
     render(){
         // console.log(this.props)
@@ -62,12 +72,11 @@ class Dashboard extends Component {
         // console.log('id', this.props.id)
         const {posts} = this.state
         let postMap = posts.map((element, index) => {
-            // console.log('element', element)
-        return <Link to={`/post/${element.id}`} key={index}>
+            return <Link to={{pathname: `/post/${element.id}`, state: {id: element.author_id, func: this.deletePost}}} key={index}>
                     <div className='post-map'>
                         <p>Title: {element.title}</p>
                         <p>Username: {element.username}</p>
-                        <img src={element.img} alt={element.username}/>
+                        <img className='the-img' src={element.img} alt={element.username}/>
                     </div>
                 </Link>
                 

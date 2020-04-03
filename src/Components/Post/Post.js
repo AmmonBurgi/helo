@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {connect} from 'react-redux'
 
 class Post extends Component {
     constructor(){
@@ -18,11 +19,9 @@ class Post extends Component {
     }
 
     getPostInfo = () => {
-        // const {postId} = this.props.match.params
-        // console.log(this.props.match.params.postid)
         axios.get(`/api/post/${this.props.match.params.postid}`)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({
             postTitle: res.data[0].title,
             postImage: res.data[0].img,
@@ -33,8 +32,12 @@ class Post extends Component {
         }).catch(err => console.log(err))
     }
 
+
+
     render(){
-        console.log('props', this.props)
+        // console.log('props', this.props)
+        // console.log(this.props.location.state)
+        // console.log(this.props.match.params.postid)
         const {postTitle, postImage, postContent, postUsername, profilePicture} = this.state
         return(
             <div>
@@ -43,8 +46,14 @@ class Post extends Component {
                 <img src={postImage} alt={postTitle} />
                 <p>{postUsername}</p>
                 <p>{postContent}</p>
+                {this.props.id === this.props.location.state.id ? (<>
+                <button onClick={() => this.props.location.state.func(this.props.match.params.postid)}>Delete</button>
+                </>) : (<></>)}
             </div>
         )
     }
 }
-export default Post
+
+const mapStateToProps = (reduxState) => reduxState
+
+export default connect(mapStateToProps)(Post)

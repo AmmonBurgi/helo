@@ -27,6 +27,7 @@ massive({
 app.get('/api/posts/:id', ctrl.getPosts)
 app.get('/api/post/:id', ctrl.getPost)
 app.post('/api/createPost/:id', ctrl.createPost)
+app.delete('/api/delete/:id', ctrl.deletePost)
 
 //Authentication endpoints
 app.post('/api/register', ctrl.register)

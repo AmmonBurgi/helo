@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
+import './post.css'
 
 class Post extends Component {
     constructor(){
@@ -40,15 +41,17 @@ class Post extends Component {
         // console.log(this.props.match.params.postid)
         const {postTitle, postImage, postContent, postUsername, profilePicture} = this.state
         return(
-            <div>
-                <p>{postTitle}</p>
-                <img src={profilePicture} alt={postUsername} />
-                <img src={postImage} alt={postTitle} />
-                <p>{postUsername}</p>
-                <p>{postContent}</p>
-                {this.props.id === this.props.location.state.id ? (<>
-                <button onClick={() => this.props.location.state.func(this.props.match.params.postid)}>Delete</button>
-                </>) : (<></>)}
+            <div className='Post'>
+                <div className='post-display'>
+                    <p>{postTitle}</p>
+                    <img src={profilePicture} alt={postUsername} />
+                    <img src={postImage} alt={postTitle} />
+                    <p>{postUsername}</p>
+                    <p>{postContent}</p>
+                    {this.props.id === this.props.location.state.id ? (<>
+                    <button onClick={() => this.props.location.state.func(this.props.match.params.postid)}>Delete</button>
+                    </>) : (<></>)}
+                </div>
             </div>
         )
     }

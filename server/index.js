@@ -24,9 +24,9 @@ massive({
     console.log('db connected')
 })
 
-app.get('/api/posts/:id', ctrl.getPosts)
+app.get('/api/posts', ctrl.getPosts)
 app.get('/api/post/:id', ctrl.getPost)
-app.post('/api/createPost/:id', ctrl.createPost)
+app.post('/api/createPost', ctrl.createPost)
 app.delete('/api/delete/:id', ctrl.deletePost)
 
 //Authentication endpoints

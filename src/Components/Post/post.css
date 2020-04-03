@@ -1,0 +1,8 @@
+.post-display {
+    position: relative;
+    left: 500px;
+    top: 100px;
+    width: 30%;
+    height: 500px;
+    background-color: blue;
+}

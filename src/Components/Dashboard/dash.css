@@ -1,5 +1,5 @@
 .post-map {
-    width: 80%;
+    width: 97%;
     height: 100px;
     background-color: rgb(95, 95, 95);
     margin-left: 100px;
@@ -10,4 +10,11 @@
 }
 .the-img {
     width: 100px;
+}
+.all-posts {
+    position: relative;
+    left: 10%;
+    width: 80%;
+    padding: 5px;
+    background-color: black;
 }

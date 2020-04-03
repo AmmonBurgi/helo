@@ -33,12 +33,14 @@ module.exports = {
 
         delete user[0].password;
         req.session.user = user[0]
+        console.log('session', req.session.user)
         res.status(202).send(req.session.user);
     },
     getPosts: async(req, res) => {
         // console.log('query', req.query)
         const {search, post} = req.query
-        const {id} = req.params
+        const id = req.session.user.id
+        console.log(id)
         // console.log(id, searchVal, newPost)
         const db = req.app.get('db')
         let newPost = post === 'true' ? true : false
@@ -76,10 +78,10 @@ module.exports = {
     },
     deletePost: async(req, res) => {
         const {id} = req.params
-        console.log(req.params)
+        // console.log(req.params)
         const db = req.app.get('db')
-        let deleted = db.delete(id)
-        console.log(deleted)
+        let deleted = await db.delete(id)
+        // console.log(deleted)
         res.status(200).send(deleted)
     }
 }

@@ -10,7 +10,7 @@ class Dashboard extends Component {
         super()
         this.state = {
             searchVal: '',
-            userPosts: false,
+            userPosts: true,
             posts: []
         }
     }
@@ -36,7 +36,7 @@ class Dashboard extends Component {
     getAllPosts = () => {
         const {searchVal, userPosts} = this.state
         // console.log(searchVal, userPosts)
-        axios.get(`/api/posts/${this.props.id}?search=${searchVal}&post=${userPosts}`)
+        axios.get(`/api/posts/?search=${searchVal}&post=${userPosts}`)
         .then(res => {
             console.log('dash data', res.data)
             this.setState({
@@ -52,6 +52,7 @@ class Dashboard extends Component {
                 searchVal: '',
                 posts: res.data
             })
+            this.componentDidMount()
         })
     }
 
@@ -86,8 +87,10 @@ class Dashboard extends Component {
                 <input onChange={e => this.handleInput(e.target.value)} value={this.state.searchVal} /> 
                 <button onClick={this.getAllPosts}>Search</button>
                 <button onClick={this.resetAllPosts} >Reset</button>
-                <p>My posts<input onClick={this.handleCheck} type='checkbox'></input></p>
-                {postMap}
+                <p>My posts<input onClick={this.handleCheck} type='checkbox' defaultChecked={this.state.userPosts}></input></p>
+                <div className='all-posts'>
+                    {postMap}
+                </div>
             </div>
         )
     }

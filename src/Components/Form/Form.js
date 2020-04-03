@@ -21,7 +21,7 @@ handleChange = (event) => {
 
 createPost = () => {
     const {title, imageUrl, content} = this.state
-    axios.post(`/api/createPost/${this.props.id}`, {title, imageUrl, content})
+    axios.post(`/api/createPost`, {title, imageUrl, content})
     .then((res) => {
         console.log(res)
         this.props.history.push('/dashboard')
